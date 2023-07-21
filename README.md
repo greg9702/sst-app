@@ -1,1 +1,1 @@
-https://sst.dev/chapters/review-our-app-architecture.html
+https://sst.dev/chapters/add-an-api-to-create-a-note.html
