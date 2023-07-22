@@ -9,9 +9,9 @@ export async function main(
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> {
   // Request body is passed in as a JSON encoded string in 'event.body'
-  const data = JSON.parse(event.body as string); // TODO
+  const data = JSON.parse(event.body as string);
 
-  let notesTable = Table as any // TODO
+  let notesTable = Table as any
   const params = {
     TableName: notesTable.Notes.tableName,
     Item: {
