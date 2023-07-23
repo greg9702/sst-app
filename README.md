@@ -1,1 +1,1 @@
-https://sst.dev/chapters/auth-in-serverless-apps.html
+https://sst.dev/chapters/secure-our-serverless-apis.html
