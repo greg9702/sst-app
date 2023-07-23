@@ -9,20 +9,23 @@ export const main = handler(
       throw new Error("Null event path params.");
     }
 
+    const data = JSON.parse(event.body as string);
     const params = {
       TableName: Table.Notes.tableName,
       Key: {
         userId: "123", // The id of the author
         noteId: event.pathParameters.id, // The id of the note from the path
       },
+      UpdateExpression: "SET content = :content, attachment = :attachment",
+      ExpressionAttributeValues: {
+        ":attachment": data.attachment || null,
+        ":content": data.content || null,
+      },
+      ReturnValues: "ALL_NEW",
     };
 
-    const result = await dynamoDb.get(params);
-    if (!result.Item) {
-      throw new Error("Item not found.");
-    }
+    await dynamoDb.update(params);
 
-    // Return the retrieved item
-    return result.Item;
+    return { status: true };
   }
 );

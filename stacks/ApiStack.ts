@@ -1,7 +1,7 @@
 import { Api, StackContext, use } from "sst/constructs";
 import { StorageStack } from "./StorageStack";
 
-export function ApiStack({ stack, app }: StackContext) {
+export function ApiStack({ stack }: StackContext) {
   const { table } = use(StorageStack);
   // Create the API
   const api = new Api(stack, "Api", {
@@ -11,8 +11,10 @@ export function ApiStack({ stack, app }: StackContext) {
       },
     },
     routes: {
+      "GET /notes": "packages/functions/src/list.main",
       "GET /notes/{id}": "packages/functions/src/get.main",
       "POST /notes": "packages/functions/src/create.main",
+      "PUT /notes/{id}": "packages/functions/src/update.main",
     },
   });
 

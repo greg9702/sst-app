@@ -1,7 +1,6 @@
 import { APIGatewayProxyEvent, Context } from "aws-lambda";
 
 export default function handler(lambda: Function) {
-  // TODO
   return async function (event: APIGatewayProxyEvent, context: Context) {
     let body, statusCode;
 
