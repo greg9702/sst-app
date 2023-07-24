@@ -6,17 +6,25 @@ import { APIGatewayProxyEvent } from "aws-lambda";
 
 export const main = handler(
   async (event: APIGatewayProxyEvent): Promise<any> => {
-    // TODO
-    const data = JSON.parse(event.body as string);
+    if (event.body === null) {
+      throw new Error("Null body.");
+    }
+
+    let userId =
+      event.requestContext.authorizer?.iam.cognitoIdentity.identityId;
+    if (!userId) {
+      throw new Error("Empty userId.");
+    }
+
+    const data = JSON.parse(event.body);
     const params = {
       TableName: Table.Notes.tableName,
       Item: {
-        // The attributes of the item to be created
-        userId: "123", // The id of the author
-        noteId: uuid.v1(), // A unique uuid
-        content: data.content, // Parsed from request body
-        attachment: data.attachment, // Parsed from request body
-        createdAt: Date.now(), // Current Unix timestamp
+        userId: userId,
+        noteId: uuid.v1(),
+        content: data.content,
+        attachment: data.attachment,
+        createdAt: Date.now(),
       },
     };
 

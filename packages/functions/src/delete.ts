@@ -9,11 +9,16 @@ export const main = handler(
       throw new Error("Null event path params.");
     }
 
+    let userId =
+      event.requestContext.authorizer?.iam.cognitoIdentity.identityId;
+    if (!userId) {
+      throw new Error("Empty userId.");
+    }
+
     const params = {
       TableName: Table.Notes.tableName,
-      // 'Key' defines the partition key and sort key of the item to be removed
       Key: {
-        userId: "123", // The id of the author
+        userId: userId,
         noteId: event.pathParameters.id, // The id of the note from the path
       },
     };

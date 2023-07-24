@@ -1,1 +1,1 @@
-https://sst.dev/chapters/secure-our-serverless-apis.html
+https://sst.dev/chapters/setup-a-stripe-account.html
