@@ -9,17 +9,11 @@ export const main = handler(
       throw new Error("Null event path params.");
     }
 
-    let userId =
-      event.requestContext.authorizer?.iam.cognitoIdentity.identityId;
-    if (!userId) {
-      throw new Error("Empty userId.");
-    }
-
     const data = JSON.parse(event.body as string);
     const params = {
       TableName: Table.Notes.tableName,
       Key: {
-        userId: userId,
+        userId: "123",
         noteId: event.pathParameters.id, // The id of the note from the path
       },
       UpdateExpression: "SET content = :content, attachment = :attachment",

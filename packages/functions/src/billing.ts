@@ -10,7 +10,7 @@ export const main = handler(
     }
 
     if (!event.body) {
-      throw new Error("Empty API key.");
+      throw new Error("Empty body.");
     }
 
     const { storage, source } = JSON.parse(event.body);
