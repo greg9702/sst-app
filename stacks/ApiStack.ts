@@ -12,6 +12,7 @@ export function ApiStack({ stack }: StackContext) {
           STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY || "",
         },
       },
+      authorizer: "iam",
     },
     routes: {
       "GET /notes/{id}": "packages/functions/src/get.main",

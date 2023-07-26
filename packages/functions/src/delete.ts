@@ -9,10 +9,13 @@ export const main = handler(
       throw new Error("Null event path params.");
     }
 
+    let userId =
+      event.requestContext.authorizer?.iam.cognitoIdentity.identityId;
+
     const params = {
       TableName: Table.Notes.tableName,
       Key: {
-        userId: "123",
+        userId: userId,
         noteId: event.pathParameters.id, // The id of the note from the path
       },
     };

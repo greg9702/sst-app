@@ -5,11 +5,14 @@ import { APIGatewayProxyEvent } from "aws-lambda";
 
 export const main = handler(
   async (event: APIGatewayProxyEvent): Promise<any> => {
+    let userId =
+      event.requestContext.authorizer?.iam.cognitoIdentity.identityId;
+
     const params = {
       TableName: Table.Notes.tableName,
       KeyConditionExpression: "userId = :userId",
       ExpressionAttributeValues: {
-        ":userId": "123",
+        ":userId": userId,
       },
     };
 

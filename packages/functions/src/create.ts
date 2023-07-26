@@ -10,11 +10,14 @@ export const main = handler(
       throw new Error("Null body.");
     }
 
+    let userId =
+      event.requestContext.authorizer?.iam.cognitoIdentity.identityId;
+
     const data = JSON.parse(event.body);
     const params = {
       TableName: Table.Notes.tableName,
       Item: {
-        userId: "123",
+        userId: userId,
         noteId: uuid.v1(),
         content: data.content,
         attachment: data.attachment,
