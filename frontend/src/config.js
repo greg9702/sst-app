@@ -15,6 +15,8 @@ const config = {
     IDENTITY_POOL_ID: process.env.REACT_APP_IDENTITY_POOL_ID,
   },
   MAX_ATTACHMENT_SIZE: 5000000,
+  STRIPE_KEY:
+    "pk_test_51NXnZfD3sk0scFnQExYOMEUEArvsQG5E4IQwrsaYHdMpKBGD98UgiTT2MFxtuwEq6eSlLDZHQ5qdkhlx6Kdhta4O00ajeNpCx6",
 };
 
 export default config;
